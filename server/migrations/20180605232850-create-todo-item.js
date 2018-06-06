@@ -1,5 +1,6 @@
 'use strict';
 module.exports = {
+	//up: creates the table and it's associated columns
 	up: (queryInterface, Sequelize) => queryInterface.createTable('TodoItems', {
 		id: {
 			allowNull: false,
@@ -13,7 +14,7 @@ module.exports = {
 		},
 		complete: {
 			type: Sequelize.BOOLEAN,
-			defaultValue = false,
+			defaultValue: false,
 		},
 		createdAt: {
 			allowNull: false,
@@ -27,11 +28,12 @@ module.exports = {
 			type: Sequelize.INTEGER,
 			onDelete: 'CASCADE',
 			references: {
-				mode: 'Todos',
+				model: 'Todos',
 				key: 'id',
 				as: 'todoId',
 			},
 		},
 	}),
-	down: (queryInterface, Sequelize) => queryInterface.dropTable('TodoItems');
+	//down: undoes what up did
+	down: (queryInterface/*, Sequelize*/) => queryInterface.dropTable('TodoItems'),
 };
