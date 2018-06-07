@@ -13,17 +13,20 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
+//creates the express application
 const app = express();
 
-//logs request to the console
+// Use application-level middleware for common functionality, including
+// logging, parsing, and session handling.
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
 // Require our routes into the application.
 require('./server/routes')(app);
+
 app.get('*', (request, response) => response.status(200).send({
 	message: 'Welcome to the beginning of Wut.',
 }));
-  
+
 module.exports = app;
