@@ -3,6 +3,8 @@
  * 
  * Start application: npm run start:dev
  * Start postgres: pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+ * Postman: 
+ * 			- to create items: 127.0.0.1:8000/api/todos/1/items
  */
 
 //include express module
