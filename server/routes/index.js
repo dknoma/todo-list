@@ -1,10 +1,12 @@
 const todosController = require('../controllers').todos;
 const todoItemsController = require('../controllers').todoItems;
+const usersController = require('../controllers').users;
 
 module.exports = (app) => {
     app.get('/api', (req, res) => res.status(200).send({
         message: 'Welcome to the Todos API!',
     }));
+
 
     /* Todo related requests */
     app.post('/api/todos', todosController.create);
@@ -18,6 +20,12 @@ module.exports = (app) => {
     app.post('/api/todos/:todoId/items', todoItemsController.create);
     app.put('/api/todos/:todoId/items/:todoItemId', todoItemsController.update);
     app.delete('/api/todos/:todoId/items/:todoItemId', todoItemsController.destroy);
+
+    app.post('/api/user', usersController.create);
+    app.post('/api/login', usersController.authenticate);
+    app.get('/api/users', usersController.list);
+    app.get('/api/user/:username', usersController.retrieve);
+    app.delete('/api/user/:username', usersController.destroy);
 
     app.all('/api/todos/:todoId/items', (req, res) =>
         res.status(405).send({

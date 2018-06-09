@@ -1,33 +1,34 @@
 {
-  "name": "todo-list",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start:dev": "nodemon ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dknoma/todo-list.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dknoma/todo-list/issues"
-  },
-  "homepage": "https://github.com/dknoma/todo-list#readme",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "express-session": "^1.15.6",
-    "morgan": "^1.9.0",
-    "pg": "^7.4.3",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^4.37.10"
-  },
-  "devDependencies": {
-    "nodemon": "^1.17.5"
-  }
+	"name": "todo-list",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start:dev": "nodemon ./bin/www",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dknoma/todo-list.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/dknoma/todo-list/issues"
+	},
+	"homepage": "https://github.com/dknoma/todo-list#readme",
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"express": "^4.16.3",
+		"express-session": "^1.15.6",
+		"jsonwebtoken": "^8.2.2",
+		"morgan": "^1.9.0",
+		"pg": "^7.4.3",
+		"pg-hstore": "^2.3.2",
+		"sequelize": "^4.37.10"
+	},
+	"devDependencies": {
+		"nodemon": "^1.17.5"
+	}
 }

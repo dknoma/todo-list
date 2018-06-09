@@ -1,6 +1,7 @@
 'use strict';
 module.exports = {
 	up: (queryInterface, Sequelize) => queryInterface.createTable('Todos', {
+		//what content is present when creating a todo
 		id: {
 			allowNull: false,
 			autoIncrement: true,

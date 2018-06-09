@@ -1,7 +1,4 @@
 'use strict';
-/* ES6 */
-// export default function (sequelize, DataTypes) {
-// CommonJS: 
 module.exports = (sequelize, DataTypes) => {
 	const Todo = sequelize.define('Todo', {
 		title: {
@@ -16,4 +13,4 @@ module.exports = (sequelize, DataTypes) => {
 		});
 	};
 	return Todo;
-}
+};
