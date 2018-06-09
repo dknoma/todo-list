@@ -24,8 +24,15 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		password: {
 			type: DataTypes.STRING,
+			validate: {
+				len: [6, 24],
+			},
 			allowNull: false,
 		},
+		// admin: {
+		// 	type: DataTypes.INTEGER,
+		// 	defaultValue: false
+		// }
 	});
 	// User.associate = (models) => {
 	// 	// User.hasOne(models.Password, {

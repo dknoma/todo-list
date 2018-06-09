@@ -14,6 +14,7 @@ module.exports = {
 			.create({
 				username: req.body.username,
 				password: req.body.password,
+				// admin: req.body.admin,
 			})
 			.then(user => res.status(201).send(user))
 			.catch(error => res.status(400).send(error));
@@ -34,20 +35,21 @@ module.exports = {
 							message: 'Authentication failed. Password is wrong'
 						});
 					} else {
-						const payload = { admin: user.admin};
+						const payload = {username: user.username};
+						
 						
 						var token = jwt.sign(payload, app.get('superSecret'), {
 							expiresInMinutes: 1440 //expires after 24 hours
 						});
 
-						// return res.status(201).send({
-						// 	message: 'Stuff'
-						// });
-						return res.json({
-							success: true,
-							message: 'Token get!',
-							token: token
+						return res.status(201).send({
+							message: 'Stuff'
 						});
+						// return res.json({
+						// 	success: true,
+						// 	message: 'Token get!',
+						// 	token: token
+						// });
 					}
 				}
 			})
