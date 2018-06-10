@@ -6,6 +6,7 @@ module.exports = {
         return Todo
             .create({
                 title: req.body.title,
+                userId: req.params.userId,
             })
             .then(todo => res.status(201).send(todo))
             .catch(error => res.status(400).send(error));

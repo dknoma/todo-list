@@ -7,8 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 			validate: {
 				isUnique: function(value, next) {
 					User.find({
-						where: {username: value},
-						attributes: ['id']
+						where: {username: value}
 					})
 					.done(function(error, user) {
 						if(error) {
@@ -34,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
 		// 	defaultValue: false
 		// }
 	});
-	// User.associate = (models) => {
-	// 	// User.hasOne(models.Password, {
-	// 	// 	foreignKey: 'pw',
-	// 	// 	as: 'password',
-	// 	// });
-	// };
+	User.associate = (models) => {
+		User.hasMany(models.Todo, {
+			foreignKey: 'userId',
+			as: 'todos',
+		});
+	};
 	return User;
 };
