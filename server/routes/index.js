@@ -10,11 +10,15 @@ module.exports = (app) => {
 		message: 'Welcome to the Todos API!',
 	}));
 
+	/* Todo w/ users */
+	app.post('/api/users/:userId/todos', todosController.create);
+	// app.post('/api/users/:userId/todos/:id', todosController.createWithId);
+	app.get('/api/users/:userId/todos', todosController.list);
+	app.get('/api/users/:userId/todos/:todoId', todosController.retrieve);
 
 	/* Todo related requests */
 	app.post('/api/todos', todosController.create);
-	// app.post('/api/:user/todos', todosController.create);
-	app.post('/api/todos/:id/', todosController.createWithId);
+	// app.post('/api/todos/:id', todosController.createWithId);
 	app.get('/api/todos', todosController.list);
 	app.get('/api/todos/:todoId', todosController.retrieve);
 	app.put('/api/todos/:todoId', todosController.update);
@@ -26,12 +30,12 @@ module.exports = (app) => {
 	app.delete('/api/todos/:todoId/items/:todoItemId', todoItemsController.destroy);
 
 	/* Users */
-	app.post('/api/user', usersController.create);
+	app.post('/api/users', usersController.create);
 	app.get('/api/users', usersController.list);
-	app.get('/api/user/:username', usersController.retrieve);
-	app.delete('/api/user/:username', usersController.destroy);
+	app.get('/api/users/:userId', usersController.retrieve);
+	app.delete('/api/users/:userId', usersController.destroy);
 
-	app.get('/api/:user/todos/:todoId', usersController.retrieve);
+	// app.get('/api/:users/todos/:userId', usersController.retrieve);
 	// app.post('/api/login', usersController.authenticate);
 	
 	app.post('/api/login', (req, res) => {

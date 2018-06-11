@@ -15,16 +15,9 @@ module.exports = {
         return Todo
             .create({
                 title: req.body.title,
+                userId: req.params.userId,
                 id: req.params.id,
             })
-            // .then(todo => {
-            //     if(!unique) {
-            //         return res.status(400).send({
-            //             message: 'Id is Not Unique',
-            //         });
-            //     }
-            //     return res.status(201).send(todo);
-            // })
             .then(todo => res.status(201).send(todo))
             .catch(error => res.status(400).send(error));
     },

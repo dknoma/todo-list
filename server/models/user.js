@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
-				isUnique: function(value, next) {
+				isUnique: (value, next) => {
 					User.find({
 						where: {username: value}
 					})
-					.done(function(error, user) {
+					.done((error, user) => {
 						if(error) {
 							return next(error);
 						}

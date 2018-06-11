@@ -4,14 +4,6 @@ const TodoItem = require('../models').TodoItem;
 
 module.exports = {
 	create(req, res) {
-		// User.find(req.body.username, function(err, user){
-		// 	if() {
-
-		// 	}
-		// })
-		// if(User.find(req.body.username)) {
-		// 	return (error => res.status(400).send(error))
-		// } else {
 		return User
 			.create({
 				username: req.body.username,
@@ -21,29 +13,29 @@ module.exports = {
 			.then(user => res.status(201).send(user))
 			.catch(error => res.status(400).send(error));
 	},
-	todo(req, res) {
-        return User
-            .findById(req.params.todoId, {
-                include: [{
-                    model: Todo,
-                    as: 'todo',
-                }],
-            })
-            .then(user => {
-                if(!user) {
-                    return res.status(404).send({
-                        message: 'User Not Found',
-                    });
-                }
-                return user
-                    .update({
-                        title: req.body.title || todo.title,
-                    })
-                    .then(() => res.status(200).send(user))
-                    .catch((error) => res.status(400).send(error));
-            })
-            .catch((error) => res.status(400).send(error));
-    },
+	// todo(req, res) {
+    //     return User
+    //         .findById(req.params.todoId, {
+    //             include: [{
+    //                 model: Todo,
+    //                 as: 'todo',
+    //             }],
+    //         })
+    //         .then(user => {
+    //             if(!user) {
+    //                 return res.status(404).send({
+    //                     message: 'User Not Found',
+    //                 });
+    //             }
+    //             return user
+    //                 .update({
+    //                     title: req.body.title || todo.title,
+    //                 })
+    //                 .then(() => res.status(200).send(user))
+    //                 .catch((error) => res.status(400).send(error));
+    //         })
+    //         .catch((error) => res.status(400).send(error));
+    // },
 	// authenticate(req, res) {
 	// 	return User
 	// 		.find({username: req.body.username})
@@ -110,14 +102,15 @@ module.exports = {
 	retrieve(req, res) {
 		return User
 			//find the given username from the table
-			.find({ where: {username: req.params.username}}, {
+			// .find({ where: {username: req.params.username}}, {
+			.findById(req.params.userId, {
 				include: [{
 					model: Todo,
 					as: 'todos',
-					include: [{
-						model: TodoItem, 
-						as: 'todoItems'
-					}],
+					// include: [{
+					// 	model: TodoItem, 
+					// 	as: 'todoItems'
+					// }],
 				}]
 			})
 			.then(user => {
@@ -132,7 +125,8 @@ module.exports = {
 	},
 	update(req, res) {
 		return User
-			.findById(req.params.username, {
+			// .findById(req.params.username, {
+			.findById(req.params.userId, {
 				include: [{
 					model: User,
 					as: 'users',
@@ -156,7 +150,8 @@ module.exports = {
 	destroy(req, res) {
 		return User
 			//find the given username from the table
-			.find({ where: {username: req.params.username}})
+			// .find({ where: {username: req.params.username}})
+			.findById(req.params.userId)
 			.then(user => {
 				if(!user) {
 					return res.status(400).send({
