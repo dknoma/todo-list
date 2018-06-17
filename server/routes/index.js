@@ -10,10 +10,17 @@ module.exports = (app) => {
 		message: 'Welcome to the Todos API!',
 	}));
 
-	/* Todo w/ users */
+	/*************************
+	 * Todo related requests *
+	 *************************/
+	/* Creates a todo */
 	app.post('/api/users/:userId/todos', todosController.create);
 	// app.post('/api/users/:userId/todos/:id', todosController.createWithId);
+
+	/* Gets all todos of a given userId */
 	app.get('/api/users/:userId/todos', todosController.list);
+
+	/* Gets a specific todo from a given userId */
 	app.get('/api/users/:userId/todos/:todoId', todosController.retrieve);
 
 	/* Todo related requests */
@@ -24,12 +31,21 @@ module.exports = (app) => {
 	app.put('/api/todos/:todoId', todosController.update);
 	app.delete('/api/todos/:todoId', todosController.destroy);
 
-	/* TodoItem related requests */
-	app.post('/api/todos/:todoId/items', todoItemsController.create);
-	app.put('/api/todos/:todoId/items/:todoItemId', todoItemsController.update);
-	app.delete('/api/todos/:todoId/items/:todoItemId', todoItemsController.destroy);
+	/*****************************
+	 * TodoItem related requests *
+	 *****************************/
+	/* Creates a todoItem */
+	app.post('/api/users/:userId/todos/:todoId/items', todoItemsController.create);
 
-	/* Users */
+	/* Updates a todoItem */
+	app.put('/api/users/:userId/todos/:todoId/items/:todoItemId', todoItemsController.update);
+
+	/* Deletes a todoItem */
+	app.delete('/api/users/:userId/todos/:todoId/items/:todoItemId', todoItemsController.destroy);
+
+	/*************************
+	 * User related requests *
+	 *************************/
 	app.post('/api/users', usersController.create);
 	app.get('/api/users', usersController.list);
 	app.get('/api/users/:userId', usersController.retrieve);

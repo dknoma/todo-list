@@ -11,16 +11,10 @@ module.exports = (sequelize, DataTypes) => {
 			foreignKey: 'userId',
 			onDelete: 'CASCADE',
 		});
-		// Todo.hasMany(models.TodoItem, {
-		// 	foreignKey: 'todoId',
-		// 	as: 'todoItems',
-		// });
+		Todo.hasMany(models.TodoItem, {
+			foreignKey: 'todoId',
+			as: 'todoItems',
+		});
 	};
-	// Todo.associate = (models) => {
-	// 	Todo.hasMany(models.TodoItem, {
-	// 		foreignKey: 'todoId',
-	// 		as: 'todoItems',
-	// 	});
-	// };
 	return Todo;
 };

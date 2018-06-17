@@ -5,12 +5,27 @@ const TodoItem = require('../models').TodoItem;
 module.exports = {
 	create(req, res) {
 		return User
-			.create({
-				username: req.body.username,
-				password: req.body.password,
-				// admin: req.body.admin,
+			.findOrCreate({
+				where: {
+					username: req.body.username
+				}, 
+				defaults: {
+					username: req.body.username,
+					firstname: req.body.firstname,
+					lastname: req.body.lastname,
+					password: req.body.password,
+					email: req.body.email,
+				}
 			})
-			.then(user => res.status(201).send(user))
+			// .spread((user, created) => {
+			// 	console.log(user.get({
+			// 	  plain: true
+			// 	}))
+			// 	console.log(created)
+			// })
+			.then(
+				user => res.status(200).send(user)
+			)
 			.catch(error => res.status(400).send(error));
 	},
 	// todo(req, res) {
@@ -87,14 +102,14 @@ module.exports = {
 	list(req, res) {
 		return User
 			.findAll({
-				// include: [{
-				// 	model: Todo,
-				// 	as: 'todos',
-				// 	include: [{
-				// 		model: TodoItem, 
-				// 		as: 'todoItems'
-				// 	}],
-				// }]
+				include: [{
+					model: Todo,
+					as: 'todos',
+					include: [{
+						model: TodoItem, 
+						as: 'todoItems'
+					}],
+				}]
 			})
 			.then(users => res.status(200).send(users))
 			.catch(error => res.status(400).send(error));
@@ -107,10 +122,10 @@ module.exports = {
 				include: [{
 					model: Todo,
 					as: 'todos',
-					// include: [{
-					// 	model: TodoItem, 
-					// 	as: 'todoItems'
-					// }],
+					include: [{
+						model: TodoItem, 
+						as: 'todoItems'
+					}],
 				}]
 			})
 			.then(user => {

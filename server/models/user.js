@@ -4,22 +4,14 @@ module.exports = (sequelize, DataTypes) => {
 		username: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			validate: {
-				isUnique: (value, next) => {
-					User.find({
-						where: {username: value}
-					})
-					.done((error, user) => {
-						if(error) {
-							return next(error);
-						}
-						if(user) {
-							return next('Username already taken.');
-						}
-						next();
-					})
-				}
-			}
+		},
+		firstname: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		lastname: {
+			type: DataTypes.STRING,
+			allowNull: false,
 		},
 		password: {
 			type: DataTypes.STRING,
@@ -28,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			allowNull: false,
 		},
-		// admin: {
-		// 	type: DataTypes.INTEGER,
-		// 	defaultValue: false
-		// }
+		email: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		}
 	});
 	User.associate = (models) => {
 		User.hasMany(models.Todo, {
